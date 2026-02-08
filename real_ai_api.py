@@ -12,6 +12,7 @@ import time
 import hashlib
 import hmac
 import base64
+import os
 from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional, Tuple
 import warnings
@@ -41,44 +42,51 @@ class RealAIApiManager:
         print("真实AI API管理器初始化完成")
 
     def load_config(self) -> Dict:
-        """加载API配置"""
+        """加载API配置，支持环境变量"""
         default_config = {
             "apis": {
                 "openai": {
-                    "enabled": True,
+                    "enabled": False,
                     "base_url": "https://api.openai.com/v1",
                     "model": "gpt-4",
-                    "api_key": "your-openai-api-key",
+                    "api_key": "",
                     "rate_limit": 60,  # 每分钟请求数
                 },
                 "anthropic": {
                     "enabled": False,
                     "base_url": "https://api.anthropic.com",
                     "model": "claude-3-sonnet-20240229",
-                    "api_key": "your-anthropic-api-key",
+                    "api_key": "",
                     "rate_limit": 50,
                 },
                 "google": {
                     "enabled": False,
                     "base_url": "https://generativelanguage.googleapis.com",
                     "model": "gemini-pro",
-                    "api_key": "your-google-api-key",
+                    "api_key": "",
                     "rate_limit": 60,
                 },
                 "baidu": {
-                    "enabled": True,
+                    "enabled": False,
                     "base_url": "https://aip.baidubce.com",
                     "model": "ernie-bot-4",
-                    "api_key": "your-baidu-api-key",
-                    "secret_key": "your-baidu-secret-key",
+                    "api_key": "",
+                    "secret_key": "",
                     "rate_limit": 30,
                 },
                 "alibaba": {
                     "enabled": False,
                     "base_url": "https://dashscope.aliyuncs.com",
                     "model": "qwen-max",
-                    "api_key": "your-alibaba-api-key",
+                    "api_key": "",
                     "rate_limit": 50,
+                },
+                "zhipu": {
+                    "enabled": False,
+                    "base_url": "https://open.bigmodel.cn/api/paas/v4",
+                    "model": "glm-4",
+                    "api_key": "",
+                    "rate_limit": 60,
                 },
             },
             "fallback": {
@@ -93,15 +101,66 @@ class RealAIApiManager:
             if os.path.exists(self.config_file):
                 with open(self.config_file, "r", encoding="utf-8") as f:
                     loaded_config = json.load(f)
-                config = {**default_config, **loaded_config}
+                # 深度合并配置
+                config = self._deep_merge(default_config, loaded_config)
                 print(f"✓ 已加载API配置: {self.config_file}")
             else:
                 config = default_config
-                self.save_config(config)
-                print(f"✓ 创建默认API配置: {self.config_file}")
+                print(f"⚠ 配置文件不存在，使用默认配置")
+                print(f"💡 提示: 复制 ai_api_config.example.json 为 ai_api_config.json 并填入API密钥")
         except Exception as e:
             print(f"⚠ API配置加载失败，使用默认配置: {e}")
             config = default_config
+
+        # 从环境变量读取API密钥（优先级最高）
+        config = self._load_from_env(config)
+
+        return config
+
+    def _deep_merge(self, base: Dict, override: Dict) -> Dict:
+        """深度合并字典"""
+        result = base.copy()
+        for key, value in override.items():
+            if key in result and isinstance(result[key], dict) and isinstance(value, dict):
+                result[key] = self._deep_merge(result[key], value)
+            else:
+                result[key] = value
+        return result
+
+    def _load_from_env(self, config: Dict) -> Dict:
+        """从环境变量加载API密钥"""
+        env_mappings = {
+            "openai": {
+                "api_key": "OPENAI_API_KEY",
+            },
+            "anthropic": {
+                "api_key": "ANTHROPIC_API_KEY",
+            },
+            "google": {
+                "api_key": "GOOGLE_API_KEY",
+            },
+            "baidu": {
+                "api_key": "BAIDU_API_KEY",
+                "secret_key": "BAIDU_SECRET_KEY",
+            },
+            "alibaba": {
+                "api_key": "ALIBABA_API_KEY",
+            },
+            "zhipu": {
+                "api_key": "ZHIPU_API_KEY",
+            },
+        }
+
+        for api_name, env_vars in env_mappings.items():
+            if api_name in config["apis"]:
+                for config_key, env_var in env_vars.items():
+                    env_value = os.getenv(env_var)
+                    if env_value:
+                        config["apis"][api_name][config_key] = env_value
+                        # 如果从环境变量读取到密钥，自动启用该API
+                        if config_key == "api_key" and env_value:
+                            config["apis"][api_name]["enabled"] = True
+                            print(f"✓ 从环境变量加载 {api_name} API密钥")
 
         return config
 

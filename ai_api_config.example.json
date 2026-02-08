@@ -1,0 +1,57 @@
+{
+  "apis": {
+    "openai": {
+      "enabled": false,
+      "base_url": "https://api.openai.com/v1",
+      "model": "gpt-4",
+      "api_key": "YOUR_OPENAI_API_KEY_HERE",
+      "rate_limit": 60
+    },
+    "anthropic": {
+      "enabled": false,
+      "base_url": "https://api.anthropic.com",
+      "model": "claude-3-sonnet-20240229",
+      "api_key": "YOUR_ANTHROPIC_API_KEY_HERE",
+      "rate_limit": 50
+    },
+    "google": {
+      "enabled": false,
+      "base_url": "https://generativelanguage.googleapis.com",
+      "model": "gemini-pro",
+      "api_key": "YOUR_GOOGLE_API_KEY_HERE",
+      "rate_limit": 60
+    },
+    "baidu": {
+      "enabled": false,
+      "base_url": "https://aip.baidubce.com",
+      "model": "ernie-bot-4",
+      "api_key": "YOUR_BAIDU_API_KEY_HERE",
+      "secret_key": "YOUR_BAIDU_SECRET_KEY_HERE",
+      "rate_limit": 30
+    },
+    "alibaba": {
+      "enabled": false,
+      "base_url": "https://dashscope.aliyuncs.com",
+      "model": "qwen-max",
+      "api_key": "YOUR_ALIBABA_API_KEY_HERE",
+      "rate_limit": 50
+    },
+    "zhipu": {
+      "enabled": false,
+      "base_url": "https://open.bigmodel.cn/api/paas/v4",
+      "model": "glm-4",
+      "api_key": "YOUR_ZHIPU_GLM_API_KEY_HERE",
+      "rate_limit": 60
+    }
+  },
+  "fallback": {
+    "enable_fallback": true,
+    "fallback_to_simulation": true,
+    "max_retries": 3
+  },
+  "cache": {
+    "enable_cache": true,
+    "cache_ttl": 3600,
+    "max_cache_size": 1000
+  }
+}

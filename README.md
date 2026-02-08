@@ -57,7 +57,7 @@ python C:\F\ai_strategy_integration.py
 # 自动检测并配置最佳数据源
 # TQSDK账户: magicday / 334455
 # 本地通达信: /海王星/vipdoc
-# GLM API: 4db0d99270664530b2ec62e4862f0f8e.STEfVsL3x4M4m7Jn
+# GLM API: your api
 3. 股票池管理
 # 支持多种股票池格式
 stock_pool = "C:/F/stock_pool_2509.txt"  # 您的股票池

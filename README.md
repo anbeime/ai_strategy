@@ -79,7 +79,7 @@ data_sources = sorted(
 2. GLM-4.7-flash集成
 # 使用免费的高质量AI模型
 glm_client = GLMFlashClient(
-    api_key="4db0d99270664530b2ec62e4862f0f8e.STEfVsL3x4M4m7Jn"
+    api_key="your api"
 )
 3. 完整技术因子计算
 # 多维度技术分析

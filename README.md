@@ -55,7 +55,7 @@ python C:\F\enhanced_ai_strategy.py
 python C:\F\ai_strategy_integration.py
 2. 数据源配置
 # 自动检测并配置最佳数据源
-# TQSDK账户: magicday / 334455
+# TQSDK账户: 
 # 本地通达信: /海王星/vipdoc
 # GLM API: your api
 3. 股票池管理
@@ -113,7 +113,7 @@ python C:\F\real_ai_api.py
 python C:\F\enhanced_ai_strategy.py
 2. QMT系统部署
 # 替换原有策略文件
-# C:\F\君弘君智交易系统\python\ai_agent_strategy_qmt.py
+# C:\xxx君弘君智交易系统\python\ai_agent_strategy_qmt.py
 # 使用增强版数据源和AI模型
 3. 参数优化
 # 运行参数优化

@@ -1,28 +1,33 @@
-# API配置文件 - 包含敏感信息
-ai_api_config.json
-*_config.json
-*.env
-.env.*
-
-# Python缓存文件
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# 虚拟环境
-venv/
-env/
-ENV/
-.venv
-
-# IDE配置
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# 环境变量和配置文件
+.env
+.env.local
+.env.*.local
+*.env
+ai_api_config.json
+config.json
+secrets.json
 
 # 日志文件
 *.log
@@ -32,38 +37,40 @@ logs/
 # 数据文件
 *.csv
 *.xlsx
-*.xls
 *.db
 *.sqlite
 *.sqlite3
+data/
+cache/
+temp/
 
-# 临时文件
-*.tmp
-*.temp
-*.bak
-*.cache
-
-# 系统文件
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
-Thumbs.db
-desktop.ini
 
-# 交易相关敏感文件
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 通达信相关
 *.tn6
-*.dbf
-*.dat
-*.ini
+*.t0002/
+*.tdx/
 
-# 备份文件
+# 测试和临时文件
+test_*.py
+temp_*.py
+*.tmp
+*.bak
 *.backup
-*_backup.*
-backup/
 
-# 测试输出
-test_output/
-output/
-results/
+# Git
+.git/
+.gitignore
 
-# 个人配置
-local_config.json
-user_config.json
+# 其他
+nul
+*.pyc

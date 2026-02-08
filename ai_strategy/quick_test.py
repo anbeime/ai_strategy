@@ -40,7 +40,7 @@ class SimpleAIStrategy:
 
         logger.info("简化AI策略初始化完成")
 
-    def load_stock_pool(self, file_path: str = "C:/F/stock_pool.txt") -> List[str]:
+    def load_stock_pool(self, file_path: str = "C:/F/ai_strategy/stock_pool.txt") -> List[str]:
         """加载股票池"""
         try:
             with open(file_path, "r", encoding="utf-8") as f:

@@ -81,7 +81,7 @@ class AIAgentStrategy:
         self,
         initial_cash: float = 100000.0,
         max_positions: int = 20,
-        stock_pool_file: str = "C:/F/stock_pool.txt",
+        stock_pool_file: str = "C:/F/ai_strategy/stock_pool.txt",
         tdx_data_path: str = "C:/F/newtdx",
     ):
         """
@@ -841,7 +841,7 @@ async def main():
     strategy = AIAgentStrategy(
         initial_cash=100000.0,
         max_positions=20,
-        stock_pool_file="C:/F/stock_pool.txt",
+        stock_pool_file="C:/F/ai_strategy/stock_pool.txt",
         tdx_data_path="C:/F/newtdx",
     )
 

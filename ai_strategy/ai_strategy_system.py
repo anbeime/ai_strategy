@@ -37,7 +37,7 @@ class StrategyConfig:
     commission_rate: float = 0.0003
     position_size_limit: float = 0.1
     tdx_path: str = "C:/F/newtdx"
-    stock_pool_file: str = "C:/F/stock_pool.txt"
+    stock_pool_file: str = "C:/F/ai_strategy/stock_pool.txt"
 
 
 @dataclass

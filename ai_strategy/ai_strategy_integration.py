@@ -81,7 +81,7 @@ class AIStrategyIntegration:
             },
             "data": {
                 "source": "qmt",
-                "stock_pool_file": "C:/F/stock_pool_2509.txt",
+                "stock_pool_file": "C:/F/ai_strategy/stock_pool_2509.txt",
                 "backup_data_source": "tdx",
             },
             "risk_management": {

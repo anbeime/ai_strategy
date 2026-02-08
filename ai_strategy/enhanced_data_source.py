@@ -66,8 +66,8 @@ class DataSourceManager:
                 "tdx_remote": {"enabled": False, "api_endpoint": "", "priority": 3},
             },
             "stock_pools": {
-                "main_pool": "C:/F/stock_pool_2509.txt",
-                "test_pool": "C:/F/test_stock_pool.txt",
+                "main_pool": "C:/F/ai_strategy/stock_pool_2509.txt",
+                "test_pool": "C:/F/ai_strategy/test_stock_pool.txt",
                 "active_pool": "main_pool",
             },
             "data_format": {
